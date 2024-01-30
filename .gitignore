@@ -1,0 +1,14 @@
+out/
+
+AFL/
+afl-cov/
+
+buffer_overflow
+handshake
+*.tar.gz
+openssl-1.0.1f/
+*.key
+*.pem
+
+*~
+.vagrant/
