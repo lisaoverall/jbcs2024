@@ -3,7 +3,8 @@
 set -e
 
 apt update && apt upgrade -y
-apt install -y build-essential gcc-multilib lcov python2 cgroup-tools
+# python3, git, bc already installed by default
+apt install -y build-essential gcc-multilib lcov python2 cgroup-tools gdb
 
 cd /vagrant
 
@@ -12,6 +13,9 @@ if ! [ -d AFL ]; then
 	git clone https://github.com/google/AFL.git
 fi
 make -C AFL && make -C AFL install
+
+# change core pattern so fuzzer can receive core dumps 
+echo core >/proc/sys/kernel/core_pattern
 
 if ! [ -d afl-cov ]; then 
 	echo "Cloning afl-cov"
