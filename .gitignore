@@ -4,6 +4,7 @@ AFL/
 afl-cov/
 
 buffer_overflow
+!buffer_overflow/
 handshake
 *.tar.gz
 openssl-1.0.1f/

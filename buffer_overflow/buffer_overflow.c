@@ -9,5 +9,4 @@ __attribute__((optimize(0))) int main(int argc, char *argv[]) {
     size_t n = read(STDIN_FILENO, buffer, 61);
     printf("read %zd bytes\n", n);
     printf("string is: %s\n", buffer);
-    printf("");
 }
