@@ -173,7 +173,7 @@ Level 2: Try lots of random inputs
 \end{frame}
 
 	\begin{frame}
-		\frametitle{Phases of testing maturity}
+		\frametitle{Levels of testing maturity}
 	\begin{columns}[onlytextwidth]
 		\begin{column}{.5\textwidth}
 Level 3: Test all the inputs
@@ -404,7 +404,7 @@ Control-flow graph:
 
 		\item{Without source code: on-the-fly instrumentation via binary translator (e.g. QEMU, DynamoRIO, PIN)\footnote{See \url{https://afl-1.readthedocs.io/en/latest/about\_afl.html\#binary-only-instrumentation}}} 
 		
-		\item{NB: other tools (e.g., \texttt{afl-cov} \cite{aflcov}) necessary for human-interpretable coverage reports from AFL results}
+		\item{Note: other tools (e.g., \texttt{afl-cov} \cite{aflcov}) necessary for human-interpretable coverage reports from AFL results}
 	\end{itemize}
 \end{frame}
 
@@ -414,7 +414,7 @@ Control-flow graph:
 	
 	\vspace{\baselineskip}
 	Examples: \begin{itemize}
-		\item{Address sanitizer (ASAN): detects addressability issues, \\e.g., buffer overflows \footnote{See \url{https://github.com/google/sanitizers/wiki/AddressSanitizerAlgorithm}}}
+		\item{Address sanitizer (ASAN): detects improper memory reads/writes, e.g., buffer overflows \footnote{See \url{https://github.com/google/sanitizers/wiki/AddressSanitizerAlgorithm}}}
 		\item{Memory sanitizer (MSAN): detects use of uninitialized memory}
 		\item{Undefined behavior sanitizer (UBSan)}
 		% language spec does not define what to do, resulting in variance between compilers and runtimes, e.g. out-of-bounds array access (if bounds can be statically determined)
@@ -448,7 +448,9 @@ Control-flow graph:
 	\begin{enumerate} 
 		\item{Run the buffer overflow example.}
 		\item{Run the Heartbleed example. Adapted from Michael Macnair's AFL workshop \cite{macnair}.}
+
 	\end{enumerate}
+	\centering \includegraphics[scale=.12]{heartbleed_explanation}\footnote{https://xkcd.com/1354/}
 \end{frame}
 
 \section[Research topics]{Research topics in fuzzing \normalsize{(to present)}}
