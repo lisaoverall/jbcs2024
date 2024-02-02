@@ -20,5 +20,6 @@ Instrumenting the library for the Heartbleed example takes a while to compile, s
 
 ```
 cd /path/to/jbcs2024/heartbleed
+tar xzf openssl-1.0.1f.tar.gz
 make openssl
 ``` 
