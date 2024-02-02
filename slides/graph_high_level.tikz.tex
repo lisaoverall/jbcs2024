@@ -1,0 +1,49 @@
+\begin{tikzpicture}[auto,
+  start chain = going below,
+  node distance = .95 cm,
+  font=\tiny\ttfamily
+]
+
+\node[decision, fill=pale-green] (b0) {if (x == 0)};
+\node[stop, left=of b0] (b1) {exit(1);};
+\node[box, below=of b0] (b2) {int accum = 0;};
+\node[decision, below=of b2] (b3) {if (op == 0)};
+\node[box, left=of b3] (b4) {int i == 0;};
+\node[decision, below=of b4] (b5) {if (i < n)};
+\node[box, below=of b5] (b6) {
+  accum += arr[i]; \\
+  i++;
+};
+% b12 needs to be defined before b7
+\node[decision, right=of b3] (b8) {if (op == 1)};
+\node[stop, right=of b8] (b9) {exit(2);};
+\node[box, below=of b8] (b10) {
+  accum = 1; \\
+  int i = 0;
+};
+\node[decision, below=of b10] (b11) {if (i < n)};
+\node[box, below=of b11] (b12) {
+  accum *= arr[i];\\
+  i++;
+};
+\node[stop, below=of b3, left=of b12] (b7) {return accum;};
+
+\draw[arr]  (b0) -- (b1) node[midway, above]{F};
+\draw[arr]  (b0) -- (b2) node[midway, right]{T};
+\draw[arr]  (b2) -- (b3);
+\draw[arr]  (b3) -- (b4) node[midway, above]{T};
+\draw[arr]  (b3) -- (b8) node[midway, above]{F};
+\draw[arr]  (b8) -- (b9) node[midway, above]{F};
+\draw[arr]  (b8) -- (b10) node[midway, right]{T};
+\draw[arr]  (b10) -- (b11);
+\draw[arr]  (b11) -- (b12) node[midway, right]{T};
+\draw[arr]  (b12.east) -- ++ (.5, 0) |- (b11);
+\draw[arr]  (b11) -- ++ (-.75, 0) -| (b7.north east) node[midway, above]{F};
+\draw[arr]  (b4) -- (b5);
+\draw[arr]  (b5) -- (b6) node[midway, right]{T};
+\draw[arr]  (b6.west) -- ++ (-.5,0) |- (b5);
+\draw[arr]  (b5.east) -- ++ (.25, 0) -| (b7) node[midway, above]{F};
+
+
+
+\end{tikzpicture}

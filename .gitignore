@@ -12,3 +12,13 @@ openssl-1.0.1f/
 
 *~
 .vagrant/
+
+*.aux
+*.bbl
+*.blg
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+*.vrb

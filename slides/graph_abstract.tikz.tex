@@ -1,0 +1,40 @@
+\begin{tikzpicture}[auto,
+  start chain = going below,
+  node distance = 6 mm,
+  %% box/.style = {draw, rounded corners, on chain, align=center},
+  %% arr/.style = {very thick, -latex}
+]
+
+\node[box] (b0) {0};
+\node[box, left=of b0] (b1) {1};
+\node[box, below=of b0] (b2) {2};
+\node[box, below=of b2] (b3) {3};
+\node[box, left=of b3] (b4) {4};
+\node[box, below=of b4] (b5) {5};
+\node[box, below=of b5] (b6) {6};
+% b12 needs to be defined before b7
+\node[box, right=of b3] (b8) {8};
+\node[box, right=of b8] (b9) {9};
+\node[box, below=of b8] (b10) {10};
+\node[box, below=of b10] (b11) {11};
+\node[box, below=of b11] (b12) {12};
+\node[box, left=of b12] (b7) {7};
+
+\draw[arr]  (b0) -- (b1);
+\draw[arr, draw=red]  (b0) -- (b2);
+\draw[arr, draw=red]  (b2) -- (b3);
+\draw[arr]  (b3) -- (b4);
+\draw[arr, draw=red]  (b3) -- (b8);
+\draw[arr, draw=red]  (b8) -- (b9);
+\draw[arr]  (b8) -- (b10);
+\draw[arr]  (b10) -- (b11);
+\draw[arr]  (b11) -- (b12);
+\draw[arr]  (b12.east) -- ++ (1, 0) |- (b11);
+\draw[arr]  (b11) -- ++ (-.5, 0) |- (b7.east);
+\draw[arr]  (b4) -- (b5);
+\draw[arr]  (b5) -- (b6);
+\draw[arr]  (b6.west) -- ++ (-1,0) |- (b5);
+\draw[arr]  (b5.east) -- ++ (.75, 0) -| (b7.north);
+
+
+\end{tikzpicture}
