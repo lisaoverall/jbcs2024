@@ -17,8 +17,7 @@ keys:
 	openssl req -x509 -newkey rsa:512 -keyout server.key \
 		-out server.pem -days 9999 -nodes -subj /CN=a/
 
-.PHONY: target
-target: keys
+handshake: keys
 	AFL_USE_ASAN=1 $(CXX) -g handshake.cc \
 		     $(OPENSSL)/libssl.a $(OPENSSL)/libcrypto.a \
 		     -o handshake -I $(OPENSSL)/include -ldl
@@ -26,3 +25,8 @@ target: keys
 .PHONY: clean
 clean:
 	rm handshake server.key server.pem
+
+.PHONY: fuzz
+fuzz: handshake
+	mkdir -p out
+	afl-fuzz -i in -o out -m none ./$^

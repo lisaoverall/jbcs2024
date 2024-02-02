@@ -1,9 +1,14 @@
 CC=afl-gcc
-CFLAGS += -m32 -fno-stack-protector -z execstack -U_FORTIFY_SOURCE
+CFLAGS += -m32 -g -O0 -fno-stack-protector -z execstack -U_FORTIFY_SOURCE
 
 buffer_overflow: buffer_overflow.c
-	$(CC) $(CFLAGS) $^ -o $@
+	AFL_USE_ASAN=1 $(CC) $(CFLAGS) $^ -o $@
 
 .PHONY: clean
 clean:
 	rm buffer_overflow
+
+.PHONY: fuzz
+fuzz: buffer_overflow
+	mkdir -p out
+	afl-fuzz -i in -o out -m none ./$^ 
